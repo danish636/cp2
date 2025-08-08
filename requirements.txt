@@ -12,5 +12,6 @@ django-allauth
 pycryptodome
 djangorestframework-simplejwt
 cryptography
+dj-rest-auth
 
 
