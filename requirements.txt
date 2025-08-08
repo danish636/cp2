@@ -11,5 +11,6 @@ django-ckeditor
 django-allauth
 pycryptodome
 djangorestframework-simplejwt
+cryptography
 
 
