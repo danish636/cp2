@@ -13,5 +13,6 @@ pycryptodome
 djangorestframework-simplejwt
 cryptography
 dj-rest-auth
+chargebee
 
 
