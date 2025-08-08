@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>progressbar Demo</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no">
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css'>
+</head>
+<style>
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1 { 
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.dropzone {
+    background: white;
+    border-radius: 5px;
+    max-width: 500px;
+    margin:50px  auto;
+    padding: 0 0;
+    height: auto;
+    min-height: 50px;
+	margin-bottom: 20px !important;
+    margin-top: 0px !important;	
+}
+
+
+/* Custom css */
+.dropzone.dz-clickable{
+    cursor: pointer;
+    background: #fff;
+    color: #000000;
+    font-weight: normal;
+    letter-spacing: 1px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #cccccc00;
+    border-radius: 2px;
+    box-shadow: 0px 0px 10px 1px #00000024;
+    border-radius: 5px;
+    padding: 16px;
+    text-transform: uppercase;
+}
+}
+.dropzone .camera-img{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 15px;
+    position: absolute;
+    left: 0;
+}
+.dropzone .img-circle{position: relative;display: inline-block;}
+.dropzone .camera-img img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.dropzone .dz-preview .dz-details .dz-filename:hover span{
+    border: 1px solid transparent; 
+}
+.dropzone .dz-message{margin: 15px;}
+.dropzone .dz-preview .dz-details .dz-size{display: none;}
+.dropzone .dz-preview .dz-details{
+    height: 50px;
+    min-height: 50px;
+    padding:0;
+    padding-left: 25px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    opacity: 1;
+    justify-content: space-between;
+}
+.dropzone .dz-preview.image__open .dz-details{
+    padding-left: 55px;
+}
+.dropzone .dz-preview{width: 100%;height: 50px;min-height: 50px;margin: 0;}
+.dropzone .dz-preview .dz-progress{
+    left: -1px;
+    right: -1px;
+    margin: 0;
+    top: -5px;
+    height: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: auto;
+}
+.dropzone .dz-preview .dz-image{
+    height: 50px;
+    width: 50px;
+    border-radius: 0 !important;
+    display: none;
+}
+
+.dropzone .dz-preview .dz-image img{
+     height: 100%;
+     width: 100%;
+}
+
+.dropzone .dz-preview.image__open .dz-image{display: block;}
+.dropzone .dz-preview.image__open .uploading{display: none;}
+.btn_submit{
+	margin: 0 auto;
+    display: block;
+    border: 0px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    padding: 13px 50px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 3px 4px 10px #3f51b54a;
+    background-color: green;
+    color: #fff;
+    letter-spacing: 0.5px;
+    transition: all 0.5s;	
+}
+.btn_upload{
+	margin: 0 auto;
+    display: block;
+    border: 0px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 3px 4px 10px #3f51b54a;
+    background-color: #3f51b5;
+    color: #fff;
+    letter-spacing: 0.5px;
+    transition: all 0.5s;	
+}
+.btn_submit:hover{
+	background-color: #27347c;	
+}
+.colorblue{
+    color: #3f51b5;	
+}
+.inside{
+	border:1px solid;
+	text-align:center;
+	padding:15px
+}
+.outside{
+	border:1px solid;
+}
+.dz-default.dz-message {
+    display: none;
+}
+</style>
+
+<body>
+<div class="wrapper">
+    <h1 class="colorblue">Upload Option Data.</h1>
+		
+	<form class="dropzone needsclick demo-upload"  action="upload" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+		<div id="dropzone">
+		<div class="outside">
+				<div class="inside">
+					Add your Option File here <br><br><input type="file" class="btn_upload" name="option">
+				</div>
+			</div>
+			<br><br>
+				<div class="inside">
+					Add your OptionStats File here<br><br><input type="file" class="btn_upload" name="optionstat">
+				</div>
+				<br><br>
+				<div class="inside">
+					Add your OptionQuotes File here<br><br><input type="file" class="btn_upload" name="optionquotes">
+				</div>
+		<br><br>				
+		</div>
+		<button class="btn_submit">Submit</button>
+		</form>
+	{{final_out}}
+    <center><h2 class="colorblue">Latest uploaded file:</h2></center>
+    <center><h3>{{data}}</h3></center>
+    <center>
+        <table border=1 cellpadding="10">
+            <tr>
+                <th>Options</th>
+                <th>OptionStats</th>
+                <th>StockQuotes</th>
+            </tr>
+            {% for a,b,c in file_names %}
+                <tr>
+                    <td>{{a}}</td>
+                    <td>{{b}}</td>
+                    <td>{{c}}</td>
+                </tr>
+    
+            {% endfor %}
+            
+        </table>
+    </center>
+    <br>
+    <br>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+</body>
+</html>

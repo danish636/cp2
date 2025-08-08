@@ -1,0 +1,66 @@
+{
+  "Default Industry": {
+    "priceToSalesRatio": {
+      "Q1 2023": {
+        "10": 1.0,
+        "25": 1.5,
+        "50": 2.0,
+        "75": 2.5,
+        "90": 3.0
+      }
+    },
+    "priceToBookRatio": {
+      "Q1 2023": {
+        "10": 0.5,
+        "25": 1.0,
+        "50": 1.5,
+        "75": 2.0,
+        "90": 2.5
+      }
+    },
+    "enterpriseValueMultiple": {
+      "Q1 2023": {
+        "10": 5,
+        "25": 7,
+        "50": 10,
+        "75": 13,
+        "90": 15
+      }
+    },
+    "evToSales": {
+      "Q1 2023": {
+        "50": 2.0
+      }
+    },
+    "evToOperatingCashFlow": {
+      "Q1 2023": {
+        "50": 4.0
+      }
+    },
+    "evToFreeCashFlow": {
+      "Q1 2023": {
+        "50": 3.0
+      }
+    },
+    "priceEarningsRatio": {
+      "Q1 2023": {
+        "50": 20
+      }
+    },
+    "priceEarningsToGrowthRatio": {
+      "Q1 2023": {
+        "50": 1.5
+      }
+    },
+    "priceToFreeCashFlowsRatio": {
+      "Q1 2023": {
+        "50": 12
+      }
+    },
+    "priceToOperatingCashFlowsRatio": {
+      "Q1 2023": {
+        "50": 10
+      }
+    }
+  }
+}

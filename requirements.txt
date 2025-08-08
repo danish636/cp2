@@ -1,0 +1,15 @@
+Django==3.2.9
+django-filter==21.1
+numpy
+pandas
+requests==2.26.0
+vaex
+djangorestframework
+django-cors-headers
+gunicorn
+django-ckeditor
+django-allauth
+pycryptodome
+djangorestframework-simplejwt
+
+

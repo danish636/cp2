@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Daily Data</title>
+    </head>
+
+    <body>
+        <form action="calc" method="POST">
+            {% csrf_token %}
+            Enter symbol:  <input type="text" name="symbol_value" id="symbol">
+            <br><br>
+            Enter stepsize:  <input type="text" name="stepsize"> 
+            <br><br>
+            Enter Days to filter expiration: <input type="text" name="month">
+            <br><br>
+            Enter Percentage of Strike: <input type="text" name="Strike_percentage">
+            <br><br>
+            Enter Start date: <input type="date" name="startdate">
+            <br><br>
+            Enter End date: <input type="date" name="enddate">
+            <br><br>
+            Enter Data date: <input type="date" name="datadate">
+            
+ 
+            <br><br><br>
+            <input type="submit">
+            </form>
+    </body>
+</html>
