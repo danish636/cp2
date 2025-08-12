@@ -122,3 +122,30 @@ class EncryptionMiddleware(MiddlewareMixin):
             except:
                 pass
 
+class ForcePaidForNonAdmins: #@danish
+    """
+    Middleware to make all non-admin users (including guests and free users) act like paid users.
+    Admin users remain unchanged.
+    """
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        # Only modify for non-admins
+        if not (request.user.is_authenticated and request.user.is_staff):
+            # Logged-in users
+            if request.user.is_authenticated:
+                # Force to paid
+                if hasattr(request.user, 'paid_user'):
+                    request.user.paid_user = True
+                if hasattr(request.user, 'is_free'):
+                    request.user.is_free = False
+                if hasattr(request.user, 'without_login'):
+                    request.user.without_login = False
+            else:
+                # Guests
+                request.user.paid_user = True
+                request.user.is_free = False
+                request.user.without_login = False
+
+        return self.get_response(request)
