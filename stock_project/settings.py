@@ -29,6 +29,23 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = "apiapp.User"
+################ TEST login ########################################
+SITE_ID = 1
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': os.getenv('GOOGLE_CLIENT_ID', ''),
+            'secret': os.getenv('GOOGLE_CLIENT_SECRET', ''),
+            'key': ''
+        },
+        'OAUTH_PKCE_ENABLED': True,
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'REDIRECT_URI': f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME', '')}/accounts/google/login/callback/"
+    }
+}
+########################################################################################3
 
 # Application definition
 
@@ -169,7 +186,9 @@ ROOT_URLCONF = 'stock_project.urls'
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ORIGIN_ALLOW_ALL = True
 # CSRF_TRUSTED_ORIGINS = ['https://*.amassinginnovation.com','https://*.127.0.0.1', "http://localhost:3000", "http://127.0.0.1:3000"]
-CSRF_TRUSTED_ORIGINS = ['https://*', 'http://*'] #@danish
+# CSRF_TRUSTED_ORIGINS = ['https://*', 'http://*'] #@danish
+CSRF_TRUSTED_ORIGINS = ['https://' + os.getenv('RENDER_EXTERNAL_HOSTNAME', '*'), 'https://*', 'http://*'] #@danish login check
+
 
 TEMPLATES = [
     {
